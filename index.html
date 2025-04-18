@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>윗별 | 김온별 팬 페이지</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --olive-main: #86a26d;
+            --olive-light: #c1d7af;
+            --olive-dark: #5a6d49;
+            --cream: #f8f5e6;
+            --gray-dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--cream);
+            color: var(--gray-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--olive-main);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: radial-gradient(circle at top right, var(--olive-light), transparent 60%);
+            opacity: 0.5;
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        header h1 {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        
+        .star-icon {
+            display: inline-block;
+            margin: 0 5px;
+            animation: twinkle 3s infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.5; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+        
+        nav {
+            background-color: var(--olive-dark);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.4rem;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--olive-main);
+        }
+        
+        .profile {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: var(--olive-light);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+            color: white;
+            border: 8px solid white;
+        }
+        
+        .profile-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .profile-info h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--olive-dark);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .info-item {
+            margin-bottom: 10px;
+        }
+        
+        .info-item strong {
+            display: block;
+            color: var(--olive-dark);
+            margin-bottom: 5px;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-header {
+            background-color: var(--olive-main);
+            color: white;
+            padding: 20px;
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .card-body ul {
+            list-style-position: inside;
+            padding-left: 10px;
+        }
+        
+        .card-body li {
+            margin-bottom: 10px;
+        }
+        
+        .fav-list {
+            list-style: none;
+        }
+        
+        .fav-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .fav-list li::before {
+            content: "✨";
+            position: absolute;
+            left: 0;
+            color: var(--olive-main);
+        }
+        
+        .album-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .album-image {
+            width: 100%;
+            height: 200px;
+            background-color: var(--olive-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .album-info {
+            padding: 20px;
+            flex-grow: 1;
+        }
+        
+        .album-info h4 {
+            margin-bottom: 10px;
+            color: var(--olive-dark);
+        }
+        
+        footer {
+            background-color: var(--olive-dark);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        .heart {
+            color: #ff6b6b;
+            animation: beat 1s infinite alternate;
+            display: inline-block;
+        }
+        
+        @keyframes beat {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+            
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <h1><span class="star-icon">★</span> 김온별 <span class="star-icon">★</span></h1>
+            <p>팬덤 이름: 윗별 (withByul)</p>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container nav-container">
+            <a href="#profile">프로필</a>
+            <a href="#tmi">TMI</a>
+            <a href="#favorites">좋아하는 것들</a>
+            <a href="#songs">좋아하는 곡</a>
+            <a href="#albums">추천 앨범</a>
+            <a href="#books">추천 책</a>
+        </div>
+    </nav>
+    
+    <section id="profile">
+        <div class="container">
+            <div class="section-title">
+                <h2>프로필</h2>
+            </div>
+            <div class="profile">
+                <div class="profile-image">
+                    ★
+                </div>
+                <div class="profile-info">
+                    <h3>김온별 (Kim Onbyul)</h3>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>본명</strong>
+                            <span>김규민 (金奎旼, Kyumin Kim)</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>출생</strong>
+                            <span>2010년 5월 10일, 부산광역시</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>혈액형</strong>
+                            <span>A형</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>학력</strong>
+                            <span>초등학교 졸업, 중학교 재학</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>종교</strong>
+                            <span>무종교</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>소속</strong>
+                            <span>무소속</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>MBTI</strong>
+                            <span>INFP</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>가족</strong>
+                            <span>부모님, 동생</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>데뷔</strong>
+                            <span>2024년 11월 27일</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>별명</strong>
+                            <span>규미볼브, 온벼리</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="tmi">
+        <div class="container">
+            <div class="section-title">
+                <h2>TMI</h2>
+            </div>
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-header">
+                        온벼리가 좋아하는 음식
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>우동</li>
+                            <li>소금빵</li>
+                            <li>크림 파스타</li>
+                            <li>아메리카노 연하게 얼음많이</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        온벼리의 기분이 좋아지려면
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>노래 듣기</li>
+                            <li>영화 보기</li>
+                            <li>글 쓰기</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="favorites">
+        <div class="container">
+            <div class="section-title">
+                <h2>좋아하는 사람들</h2>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    온벼리가 좋아하는 사람
+                </div>
+                <div class="card-body">
+                    <ul class="fav-list">
+                        <li><a href="https://www.instagram.com/mooong_ge" target="_blank">인스타그램 뭉게님</a></li>
+                        <li><a href="https://www.threads.net/@saida._.1019" target="_blank">스레드 사이다님</a></li>
+                        <li><a href="https://www.instagram.com/infp._.pori" target="_blank">인스타그램 포리님</a></li>
+                        <li>SHINee 종현</li>
+                        <li>레드벨벳 조이</li>
+                        <li>검정치마</li>
+                        <li>밍기뉴</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="songs">
+        <div class="container">
+            <div class="section-title">
+                <h2>좋아하는 본인 곡</h2>
+            </div>
+            <div class="card-container">
+                <div class="card album-card">
+                    <div class="album-image">
+                        🎤
+                    </div>
+                    <div class="album-info">
+                        <h4>너를 기다리던 새벽</h4>
+                        <p>아티스트: 김온별</p>
+                    </div>
+                </div>
+                
+                <div class="card album-card">
+                    <div class="album-image">
+                        🎤
+                    </div>
+                    <div class="album-info">
+                        <h4>잠에 들어요</h4>
+                        <p>아티스트: 김온별</p>
+                    </div>
+                </div>
+                
+                <div class="card album-card">
+                    <div class="album-image">
+                        🎤
+                    </div>
+                    <div class="album-info">
+                        <h4>넌 몰라주겠지만</h4>
+                        <p>아티스트: 김온별</p>
+                    </div>
+                </div>
+                
+                <div class="card album-card">
+                    <div class="album-image">
+                        🎤
+                    </div>
+                    <div class="album-info">
+                        <h4>낮잠 (미공개 곡)</h4>
+                        <p>아티스트: 김온별</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="albums">
+        <div class="container">
+            <div class="section-title">
+                <h2>추천 앨범</h2>
+            </div>
+            <div class="card-container">
+                <div class="card album-card">
+                    <div class="album-image">
+                        🎵
+                    </div>
+                    <div class="album-info">
+                        <h4>[죽은 척 하기]</h4>
+                        <p>아티스트: 해파</p>
+                    </div>
+                </div>
+                
+                <div class="card album-card">
+                    <div class="album-image">
+                        🎵
+                    </div>
+                    <div class="album-info">
+                        <h4>[It's Okay, Dear]</h4>
+                        <p>아티스트: 선우정아</p>
+                    </div>
+                </div>
+                
+                <div class="card album-card">
+                    <div class="album-image">
+                        🎵
+                    </div>
+                    <div class="album-info">
+                        <h4>[Don't you worry baby: I'm only swimming]</h4>
+                        <p>아티스트: 검정치마</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="books">
+        <div class="container">
+            <div class="section-title">
+                <h2>추천 책</h2>
+            </div>
+            <div class="card-container">
+                <div class="card album-card">
+                    <div class="album-image">
+                        📚
+                    </div>
+                    <div class="album-info">
+                        <h4>외로운 건 싫은데 혼자 있고 싶어</h4>
+                        <p>저자: 우유곽</p>
+                    </div>
+                </div>
+                
+                <div class="card album-card">
+                    <div class="album-image">
+                        📚
+                    </div>
+                    <div class="album-info">
+                        <h4>오늘도 잘 살았네</h4>
+                        <p>저자: 고은지</p>
+                    </div>
+                </div>
+                
+                <div class="card album-card">
+                    <div class="album-image">
+                        📚
+                    </div>
+                    <div class="album-info">
+                        <h4>태어나줘서 고마워</h4>
+                        <p>저자: 오수영</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>윗별 (withByul) - 김온별 팬 페이지</p>
+            <p>온벼리와 함께 빛나는 별들 <span class="heart">♥</span></p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/" target="_blank">인스타그램</a>
+                <a href="https://twitter.com/" target="_blank">트위터</a>
+                <a href="https://www.youtube.com/" target="_blank">유튜브</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
